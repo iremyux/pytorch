@@ -994,6 +994,7 @@ def get_pytest_args(
             pytest_args.extend(["--save-xml"])
         if options.filter:
             pytest_args.extend(["-k", options.filter])
+
     else:
         # Use pytext-dist to run C++ tests in parallel as running them sequentially using run_test
         # is much slower than running them directly
