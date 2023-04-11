@@ -9158,6 +9158,7 @@
         "TestFakeTensorCPU::test_fake_crossref_backward_amp_normal_cpu_float32",
         "TestFakeTensorCPU::test_fake_crossref_backward_amp_ormqr_cpu_float32",
         "TestFakeTensorCPU::test_fake_crossref_backward_amp_outer_cpu_float32",
+        "TestFakeTensorCPU::test_fake_crossref_backward_amp_pca_lowrank_cpu_float32",
         "TestFakeTensorCPU::test_fake_crossref_backward_amp_permute_cpu_float32",
         "TestFakeTensorCPU::test_fake_crossref_backward_amp_polar_cpu_float32",
         "TestFakeTensorCPU::test_fake_crossref_backward_amp_polygamma_polygamma_n_0_cpu_float32",
@@ -9236,6 +9237,8 @@
         "TestFakeTensorCPU::test_fake_crossref_backward_amp_sub_cpu_float32",
         "TestFakeTensorCPU::test_fake_crossref_backward_amp_sum_cpu_float32",
         "TestFakeTensorCPU::test_fake_crossref_backward_amp_sum_to_size_cpu_float32",
+        "TestFakeTensorCPU::test_fake_crossref_backward_amp_svd_cpu_float32",
+        "TestFakeTensorCPU::test_fake_crossref_backward_amp_svd_lowrank_cpu_float32",
         "TestFakeTensorCPU::test_fake_crossref_backward_amp_t_cpu_float32",
         "TestFakeTensorCPU::test_fake_crossref_backward_amp_take_along_dim_cpu_float32",
         "TestFakeTensorCPU::test_fake_crossref_backward_amp_take_cpu_float32",
@@ -9633,6 +9636,7 @@
         "TestFakeTensorCPU::test_fake_crossref_backward_no_amp_normal_cpu_float32",
         "TestFakeTensorCPU::test_fake_crossref_backward_no_amp_ormqr_cpu_float32",
         "TestFakeTensorCPU::test_fake_crossref_backward_no_amp_outer_cpu_float32",
+        "TestFakeTensorCPU::test_fake_crossref_backward_no_amp_pca_lowrank_cpu_float32",
         "TestFakeTensorCPU::test_fake_crossref_backward_no_amp_permute_cpu_float32",
         "TestFakeTensorCPU::test_fake_crossref_backward_no_amp_pinverse_cpu_float32",
         "TestFakeTensorCPU::test_fake_crossref_backward_no_amp_polar_cpu_float32",
@@ -9712,6 +9716,8 @@
         "TestFakeTensorCPU::test_fake_crossref_backward_no_amp_sub_cpu_float32",
         "TestFakeTensorCPU::test_fake_crossref_backward_no_amp_sum_cpu_float32",
         "TestFakeTensorCPU::test_fake_crossref_backward_no_amp_sum_to_size_cpu_float32",
+        "TestFakeTensorCPU::test_fake_crossref_backward_no_amp_svd_cpu_float32",
+        "TestFakeTensorCPU::test_fake_crossref_backward_no_amp_svd_lowrank_cpu_float32",
         "TestFakeTensorCPU::test_fake_crossref_backward_no_amp_t_cpu_float32",
         "TestFakeTensorCPU::test_fake_crossref_backward_no_amp_take_along_dim_cpu_float32",
         "TestFakeTensorCPU::test_fake_crossref_backward_no_amp_take_cpu_float32",
@@ -18403,6 +18409,613 @@
         "TestNN::test_broadcast_not_requiring_grad",
         "TestNN::test_projections_lstm_check_device",
         "TestNN::test_rnn_check_device"
+      ]
+    },
+    "67470!": {
+      "count": 5,
+      "tests": [
+        "TestCommonCPU::test_noncontiguous_samples___rmatmul___cpu_int64",
+        "TestCommonCPU::test_noncontiguous_samples_linalg_multi_dot_cpu_complex64",
+        "TestCommonCPU::test_noncontiguous_samples_linalg_multi_dot_cpu_float32",
+        "TestCommonCPU::test_noncontiguous_samples_linalg_multi_dot_cpu_int64",
+        "TestCommonCPU::test_noncontiguous_samples_matmul_cpu_int64"
+      ]
+    },
+    "skip": {
+      "count": 5,
+      "tests": [
+        "TestCompositeComplianceCPU::test_operator_jiterator_2inputs_2outputs_cpu_float32",
+        "TestCompositeComplianceCPU::test_operator_jiterator_4inputs_with_extra_args_cpu_float32",
+        "TestCompositeComplianceCPU::test_operator_jiterator_binary_cpu_float32",
+        "TestCompositeComplianceCPU::test_operator_jiterator_binary_return_by_ref_cpu_float32",
+        "TestCompositeComplianceCPU::test_operator_jiterator_unary_cpu_float32"
+      ]
+    },
+    "needs cudnn >= 5.1": {
+      "count": 4,
+      "tests": [
+        "TestNN::test_RNN_change_dropout",
+        "TestNN::test_RNN_cpu_vs_cudnn_with_dropout",
+        "TestNN::test_RNN_dropout",
+        "TestNN::test_RNN_dropout_state"
+      ]
+    },
+    "CUDA unavailable": {
+      "count": 4,
+      "tests": [
+        "TestNN::test_batchnorm_cudnn_half",
+        "TestNN::test_batchnorm_cudnn_nhwc",
+        "TestNN::test_batchnorm_nonaffine_cuda_half_input",
+        "TestNN::test_interpolate_illegal_memory_access"
+      ]
+    },
+    "Expected: empty_permuted is not comparable": {
+      "count": 4,
+      "tests": [
+        "TestCommonCPU::test_complex_half_reference_testing_empty_permuted_cpu_complex32",
+        "TestCommonCPU::test_out_empty_permuted_cpu_float32",
+        "TestCommonCPU::test_out_warning_empty_permuted_cpu",
+        "TestCompositeComplianceCPU::test_operator_empty_permuted_cpu_float32"
+      ]
+    },
+    "Allowed exception": {
+      "count": 4,
+      "tests": [
+        "TestCompositeComplianceCPU::test_backward_to_sparse_cpu_float32",
+        "TestCompositeComplianceCPU::test_operator_resize__cpu_float32",
+        "TestCompositeComplianceCPU::test_operator_to_sparse_cpu_float32",
+        "TestTagsCPU::test_tags_to_sparse_cpu_float32"
+      ]
+    },
+    "MKL-DNN build is disabled": {
+      "count": 3,
+      "tests": [
+        "TestAutograd::test_gradcheck_multiple_mkldnn_inputs",
+        "TestAutograd::test_gradcheck_test_outputs",
+        "TestAutograd::test_gradcheck_validates_input_mkldnn"
+      ]
+    },
+    "Some inputs produce undefined outputs": {
+      "count": 3,
+      "tests": [
+        "TestCommonCPU::test_compare_cpu__refs_bitwise_left_shift_cpu_int64",
+        "TestCommonCPU::test_compare_cpu_bitwise_left_shift_cpu_int64",
+        "TestCommonCPU::test_compare_cpu_bitwise_right_shift_cpu_int64"
+      ]
+    },
+    "Works for int64, fails for everything else": {
+      "count": 3,
+      "tests": [
+        "TestCommonCPU::test_noncontiguous_samples_as_strided_scatter_cpu_complex64",
+        "TestCommonCPU::test_noncontiguous_samples_as_strided_scatter_cpu_float32",
+        "TestCommonCPU::test_noncontiguous_samples_as_strided_scatter_cpu_int64"
+      ]
+    },
+    "Skipped": {
+      "count": 3,
+      "tests": [
+        "TestCommonCPU::test_noncontiguous_samples_to_sparse_cpu_complex64",
+        "TestCommonCPU::test_noncontiguous_samples_to_sparse_cpu_float32",
+        "TestCommonCPU::test_noncontiguous_samples_to_sparse_cpu_int64"
+      ]
+    },
+    "Allowed exemption": {
+      "count": 3,
+      "tests": [
+        "TestCompositeComplianceCPU::test_operator_nn_functional_embedding_bag_cpu_float32",
+        "TestCompositeComplianceCPU::test_operator_nn_functional_embedding_cpu_float32",
+        "TestCompositeComplianceCPU::test_operator_resize_as__cpu_float32"
+      ]
+    },
+    "Test changes in memory layout": {
+      "count": 3,
+      "tests": [
+        "TestMathBitsCPU::test_conj_view_as_strided_partial_views_cpu_complex64",
+        "TestMathBitsCPU::test_neg_conj_view_as_strided_partial_views_cpu_complex128",
+        "TestMathBitsCPU::test_neg_view_as_strided_partial_views_cpu_float64"
+      ]
+    },
+    "In-place abs not supported for complex tensors": {
+      "count": 3,
+      "tests": [
+        "TestFwdGradientsCPU::test_inplace_forward_mode_AD_abs_cpu_complex128",
+        "TestBwdGradientsCPU::test_inplace_grad_abs_cpu_complex128",
+        "TestBwdGradientsCPU::test_inplace_gradgrad_abs_cpu_complex128"
+      ]
+    },
+    "TODO: RuntimeError: no _refs support for torch.rand_like": {
+      "count": 27,
+      "tests": [
+        "TestCommonCPU::test_python_ref__refs_cauchy_cpu_bfloat16",
+        "TestCommonCPU::test_python_ref__refs_cauchy_cpu_float16",
+        "TestCommonCPU::test_python_ref__refs_cauchy_cpu_float32",
+        "TestCommonCPU::test_python_ref__refs_cauchy_cpu_float64",
+        "TestCommonCPU::test_python_ref__refs_exponential_cpu_bfloat16",
+        "TestCommonCPU::test_python_ref__refs_exponential_cpu_float16",
+        "TestCommonCPU::test_python_ref__refs_exponential_cpu_float32",
+        "TestCommonCPU::test_python_ref__refs_exponential_cpu_float64",
+        "TestCommonCPU::test_python_ref__refs_geometric_cpu_bfloat16",
+        "TestCommonCPU::test_python_ref__refs_geometric_cpu_float16",
+        "TestCommonCPU::test_python_ref__refs_geometric_cpu_float32",
+        "TestCommonCPU::test_python_ref__refs_geometric_cpu_float64",
+        "TestCommonCPU::test_python_ref__refs_geometric_cpu_int16",
+        "TestCommonCPU::test_python_ref__refs_geometric_cpu_int32",
+        "TestCommonCPU::test_python_ref__refs_geometric_cpu_int64",
+        "TestCommonCPU::test_python_ref__refs_geometric_cpu_int8",
+        "TestCommonCPU::test_python_ref__refs_geometric_cpu_uint8",
+        "TestCommonCPU::test_python_ref__refs_log_normal_cpu_bfloat16",
+        "TestCommonCPU::test_python_ref__refs_log_normal_cpu_float16",
+        "TestCommonCPU::test_python_ref__refs_log_normal_cpu_float32",
+        "TestCommonCPU::test_python_ref__refs_log_normal_cpu_float64",
+        "TestCommonCPU::test_python_ref__refs_normal_in_place_cpu_bfloat16",
+        "TestCommonCPU::test_python_ref__refs_normal_in_place_cpu_complex128",
+        "TestCommonCPU::test_python_ref__refs_normal_in_place_cpu_complex64",
+        "TestCommonCPU::test_python_ref__refs_normal_in_place_cpu_float16",
+        "TestCommonCPU::test_python_ref__refs_normal_in_place_cpu_float32",
+        "TestCommonCPU::test_python_ref__refs_normal_in_place_cpu_float64"
+      ]
+    },
+    "Can't check result for empty": {
+      "count": 26,
+      "tests": [
+        "TestCommonCPU::test_python_ref_executor__refs_empty_executor_aten_cpu_bfloat16",
+        "TestCommonCPU::test_python_ref_executor__refs_empty_executor_aten_cpu_bool",
+        "TestCommonCPU::test_python_ref_executor__refs_empty_executor_aten_cpu_complex128",
+        "TestCommonCPU::test_python_ref_executor__refs_empty_executor_aten_cpu_complex32",
+        "TestCommonCPU::test_python_ref_executor__refs_empty_executor_aten_cpu_complex64",
+        "TestCommonCPU::test_python_ref_executor__refs_empty_executor_aten_cpu_float16",
+        "TestCommonCPU::test_python_ref_executor__refs_empty_executor_aten_cpu_float32",
+        "TestCommonCPU::test_python_ref_executor__refs_empty_executor_aten_cpu_float64",
+        "TestCommonCPU::test_python_ref_executor__refs_empty_executor_aten_cpu_int16",
+        "TestCommonCPU::test_python_ref_executor__refs_empty_executor_aten_cpu_int32",
+        "TestCommonCPU::test_python_ref_executor__refs_empty_executor_aten_cpu_int64",
+        "TestCommonCPU::test_python_ref_executor__refs_empty_executor_aten_cpu_int8",
+        "TestCommonCPU::test_python_ref_executor__refs_empty_executor_aten_cpu_uint8",
+        "TestCommonCPU::test_python_ref_executor__refs_empty_executor_nvfuser_cpu_bfloat16",
+        "TestCommonCPU::test_python_ref_executor__refs_empty_executor_nvfuser_cpu_bool",
+        "TestCommonCPU::test_python_ref_executor__refs_empty_executor_nvfuser_cpu_complex128",
+        "TestCommonCPU::test_python_ref_executor__refs_empty_executor_nvfuser_cpu_complex32",
+        "TestCommonCPU::test_python_ref_executor__refs_empty_executor_nvfuser_cpu_complex64",
+        "TestCommonCPU::test_python_ref_executor__refs_empty_executor_nvfuser_cpu_float16",
+        "TestCommonCPU::test_python_ref_executor__refs_empty_executor_nvfuser_cpu_float32",
+        "TestCommonCPU::test_python_ref_executor__refs_empty_executor_nvfuser_cpu_float64",
+        "TestCommonCPU::test_python_ref_executor__refs_empty_executor_nvfuser_cpu_int16",
+        "TestCommonCPU::test_python_ref_executor__refs_empty_executor_nvfuser_cpu_int32",
+        "TestCommonCPU::test_python_ref_executor__refs_empty_executor_nvfuser_cpu_int64",
+        "TestCommonCPU::test_python_ref_executor__refs_empty_executor_nvfuser_cpu_int8",
+        "TestCommonCPU::test_python_ref_executor__refs_empty_executor_nvfuser_cpu_uint8"
+      ]
+    },
+    "Can't check result for empty_like": {
+      "count": 26,
+      "tests": [
+        "TestCommonCPU::test_python_ref_executor__refs_empty_like_executor_aten_cpu_bfloat16",
+        "TestCommonCPU::test_python_ref_executor__refs_empty_like_executor_aten_cpu_bool",
+        "TestCommonCPU::test_python_ref_executor__refs_empty_like_executor_aten_cpu_complex128",
+        "TestCommonCPU::test_python_ref_executor__refs_empty_like_executor_aten_cpu_complex32",
+        "TestCommonCPU::test_python_ref_executor__refs_empty_like_executor_aten_cpu_complex64",
+        "TestCommonCPU::test_python_ref_executor__refs_empty_like_executor_aten_cpu_float16",
+        "TestCommonCPU::test_python_ref_executor__refs_empty_like_executor_aten_cpu_float32",
+        "TestCommonCPU::test_python_ref_executor__refs_empty_like_executor_aten_cpu_float64",
+        "TestCommonCPU::test_python_ref_executor__refs_empty_like_executor_aten_cpu_int16",
+        "TestCommonCPU::test_python_ref_executor__refs_empty_like_executor_aten_cpu_int32",
+        "TestCommonCPU::test_python_ref_executor__refs_empty_like_executor_aten_cpu_int64",
+        "TestCommonCPU::test_python_ref_executor__refs_empty_like_executor_aten_cpu_int8",
+        "TestCommonCPU::test_python_ref_executor__refs_empty_like_executor_aten_cpu_uint8",
+        "TestCommonCPU::test_python_ref_executor__refs_empty_like_executor_nvfuser_cpu_bfloat16",
+        "TestCommonCPU::test_python_ref_executor__refs_empty_like_executor_nvfuser_cpu_bool",
+        "TestCommonCPU::test_python_ref_executor__refs_empty_like_executor_nvfuser_cpu_complex128",
+        "TestCommonCPU::test_python_ref_executor__refs_empty_like_executor_nvfuser_cpu_complex32",
+        "TestCommonCPU::test_python_ref_executor__refs_empty_like_executor_nvfuser_cpu_complex64",
+        "TestCommonCPU::test_python_ref_executor__refs_empty_like_executor_nvfuser_cpu_float16",
+        "TestCommonCPU::test_python_ref_executor__refs_empty_like_executor_nvfuser_cpu_float32",
+        "TestCommonCPU::test_python_ref_executor__refs_empty_like_executor_nvfuser_cpu_float64",
+        "TestCommonCPU::test_python_ref_executor__refs_empty_like_executor_nvfuser_cpu_int16",
+        "TestCommonCPU::test_python_ref_executor__refs_empty_like_executor_nvfuser_cpu_int32",
+        "TestCommonCPU::test_python_ref_executor__refs_empty_like_executor_nvfuser_cpu_int64",
+        "TestCommonCPU::test_python_ref_executor__refs_empty_like_executor_nvfuser_cpu_int8",
+        "TestCommonCPU::test_python_ref_executor__refs_empty_like_executor_nvfuser_cpu_uint8"
+      ]
+    },
+    "Can't check result for new_empty": {
+      "count": 26,
+      "tests": [
+        "TestCommonCPU::test_python_ref_executor__refs_new_empty_executor_aten_cpu_bfloat16",
+        "TestCommonCPU::test_python_ref_executor__refs_new_empty_executor_aten_cpu_bool",
+        "TestCommonCPU::test_python_ref_executor__refs_new_empty_executor_aten_cpu_complex128",
+        "TestCommonCPU::test_python_ref_executor__refs_new_empty_executor_aten_cpu_complex32",
+        "TestCommonCPU::test_python_ref_executor__refs_new_empty_executor_aten_cpu_complex64",
+        "TestCommonCPU::test_python_ref_executor__refs_new_empty_executor_aten_cpu_float16",
+        "TestCommonCPU::test_python_ref_executor__refs_new_empty_executor_aten_cpu_float32",
+        "TestCommonCPU::test_python_ref_executor__refs_new_empty_executor_aten_cpu_float64",
+        "TestCommonCPU::test_python_ref_executor__refs_new_empty_executor_aten_cpu_int16",
+        "TestCommonCPU::test_python_ref_executor__refs_new_empty_executor_aten_cpu_int32",
+        "TestCommonCPU::test_python_ref_executor__refs_new_empty_executor_aten_cpu_int64",
+        "TestCommonCPU::test_python_ref_executor__refs_new_empty_executor_aten_cpu_int8",
+        "TestCommonCPU::test_python_ref_executor__refs_new_empty_executor_aten_cpu_uint8",
+        "TestCommonCPU::test_python_ref_executor__refs_new_empty_executor_nvfuser_cpu_bfloat16",
+        "TestCommonCPU::test_python_ref_executor__refs_new_empty_executor_nvfuser_cpu_bool",
+        "TestCommonCPU::test_python_ref_executor__refs_new_empty_executor_nvfuser_cpu_complex128",
+        "TestCommonCPU::test_python_ref_executor__refs_new_empty_executor_nvfuser_cpu_complex32",
+        "TestCommonCPU::test_python_ref_executor__refs_new_empty_executor_nvfuser_cpu_complex64",
+        "TestCommonCPU::test_python_ref_executor__refs_new_empty_executor_nvfuser_cpu_float16",
+        "TestCommonCPU::test_python_ref_executor__refs_new_empty_executor_nvfuser_cpu_float32",
+        "TestCommonCPU::test_python_ref_executor__refs_new_empty_executor_nvfuser_cpu_float64",
+        "TestCommonCPU::test_python_ref_executor__refs_new_empty_executor_nvfuser_cpu_int16",
+        "TestCommonCPU::test_python_ref_executor__refs_new_empty_executor_nvfuser_cpu_int32",
+        "TestCommonCPU::test_python_ref_executor__refs_new_empty_executor_nvfuser_cpu_int64",
+        "TestCommonCPU::test_python_ref_executor__refs_new_empty_executor_nvfuser_cpu_int8",
+        "TestCommonCPU::test_python_ref_executor__refs_new_empty_executor_nvfuser_cpu_uint8"
+      ]
+    },
+    "make_traced() doesn't set seed properly!": {
+      "count": 26,
+      "tests": [
+        "TestCommonCPU::test_python_ref_executor__refs_normal_in_place_executor_aten_cpu_bfloat16",
+        "TestCommonCPU::test_python_ref_executor__refs_normal_in_place_executor_aten_cpu_complex128",
+        "TestCommonCPU::test_python_ref_executor__refs_normal_in_place_executor_aten_cpu_complex64",
+        "TestCommonCPU::test_python_ref_executor__refs_normal_in_place_executor_aten_cpu_float16",
+        "TestCommonCPU::test_python_ref_executor__refs_normal_in_place_executor_aten_cpu_float32",
+        "TestCommonCPU::test_python_ref_executor__refs_normal_in_place_executor_aten_cpu_float64",
+        "TestCommonCPU::test_python_ref_executor__refs_normal_in_place_executor_nvfuser_cpu_bfloat16",
+        "TestCommonCPU::test_python_ref_executor__refs_normal_in_place_executor_nvfuser_cpu_complex128",
+        "TestCommonCPU::test_python_ref_executor__refs_normal_in_place_executor_nvfuser_cpu_complex64",
+        "TestCommonCPU::test_python_ref_executor__refs_normal_in_place_executor_nvfuser_cpu_float16",
+        "TestCommonCPU::test_python_ref_executor__refs_normal_in_place_executor_nvfuser_cpu_float32",
+        "TestCommonCPU::test_python_ref_executor__refs_normal_in_place_executor_nvfuser_cpu_float64",
+        "TestCommonCPU::test_python_ref_executor__refs_randn_executor_aten_cpu_bfloat16",
+        "TestCommonCPU::test_python_ref_executor__refs_randn_executor_aten_cpu_complex128",
+        "TestCommonCPU::test_python_ref_executor__refs_randn_executor_aten_cpu_complex32",
+        "TestCommonCPU::test_python_ref_executor__refs_randn_executor_aten_cpu_complex64",
+        "TestCommonCPU::test_python_ref_executor__refs_randn_executor_aten_cpu_float16",
+        "TestCommonCPU::test_python_ref_executor__refs_randn_executor_aten_cpu_float32",
+        "TestCommonCPU::test_python_ref_executor__refs_randn_executor_aten_cpu_float64",
+        "TestCommonCPU::test_python_ref_executor__refs_randn_executor_nvfuser_cpu_bfloat16",
+        "TestCommonCPU::test_python_ref_executor__refs_randn_executor_nvfuser_cpu_complex128",
+        "TestCommonCPU::test_python_ref_executor__refs_randn_executor_nvfuser_cpu_complex32",
+        "TestCommonCPU::test_python_ref_executor__refs_randn_executor_nvfuser_cpu_complex64",
+        "TestCommonCPU::test_python_ref_executor__refs_randn_executor_nvfuser_cpu_float16",
+        "TestCommonCPU::test_python_ref_executor__refs_randn_executor_nvfuser_cpu_float32",
+        "TestCommonCPU::test_python_ref_executor__refs_randn_executor_nvfuser_cpu_float64"
+      ]
+    },
+    "Expected: dropout is not comparable": {
+      "count": 17,
+      "tests": [
+        "TestCommonCPU::test_compare_cpu__refs_nn_functional_alpha_dropout_cpu_float32",
+        "TestCommonCPU::test_out__refs_nn_functional_dropout_cpu_float32",
+        "TestCommonCPU::test_out_warning__refs_nn_functional_dropout_cpu",
+        "TestCommonCPU::test_python_ref__refs_nn_functional_alpha_dropout_cpu_bfloat16",
+        "TestCommonCPU::test_python_ref__refs_nn_functional_alpha_dropout_cpu_float32",
+        "TestCommonCPU::test_python_ref__refs_nn_functional_alpha_dropout_cpu_float64",
+        "TestCommonCPU::test_python_ref__refs_nn_functional_dropout_cpu_bfloat16",
+        "TestCommonCPU::test_python_ref__refs_nn_functional_dropout_cpu_float32",
+        "TestCommonCPU::test_python_ref__refs_nn_functional_dropout_cpu_float64",
+        "TestCommonCPU::test_python_ref_torch_fallback__refs_nn_functional_alpha_dropout_cpu_bfloat16",
+        "TestCommonCPU::test_python_ref_torch_fallback__refs_nn_functional_alpha_dropout_cpu_float32",
+        "TestCommonCPU::test_python_ref_torch_fallback__refs_nn_functional_alpha_dropout_cpu_float64",
+        "TestCommonCPU::test_python_ref_torch_fallback__refs_nn_functional_dropout_cpu_bfloat16",
+        "TestCommonCPU::test_python_ref_torch_fallback__refs_nn_functional_dropout_cpu_float32",
+        "TestCommonCPU::test_python_ref_torch_fallback__refs_nn_functional_dropout_cpu_float64",
+        "TestMathBitsCPU::test_neg_view__refs_nn_functional_alpha_dropout_cpu_float64",
+        "TestMathBitsCPU::test_neg_view__refs_nn_functional_dropout_cpu_float64"
+      ]
+    },
+    "PyTorch is built without MKL support": {
+      "count": 16,
+      "tests": [
+        "TestCommonCPU::test_compare_cpu_sparse_sampled_addmm_cpu_float32",
+        "TestCommonCPU::test_dtypes_sparse_sampled_addmm_cpu",
+        "TestCommonCPU::test_multiple_devices_sparse_sampled_addmm_cpu_float32",
+        "TestCompositeComplianceCPU::test_forward_ad_sparse_sampled_addmm_cpu_float32",
+        "TestFakeTensorCPU::test_fake_autocast_sparse_sampled_addmm_cpu_float32",
+        "TestFakeTensorCPU::test_fake_crossref_backward_no_amp_sparse_sampled_addmm_cpu_float32",
+        "TestFakeTensorCPU::test_fake_sparse_sampled_addmm_cpu_float32",
+        "TestFakeTensorCPU::test_pointwise_ops_sparse_sampled_addmm_cpu_float32",
+        "TestFwdGradientsCPU::test_inplace_forward_mode_AD_sparse_sampled_addmm_cpu_complex128",
+        "TestFwdGradientsCPU::test_inplace_forward_mode_AD_sparse_sampled_addmm_cpu_float64",
+        "TestBwdGradientsCPU::test_fn_fail_gradgrad_sparse_sampled_addmm_cpu_complex128",
+        "TestBwdGradientsCPU::test_fn_fail_gradgrad_sparse_sampled_addmm_cpu_float64",
+        "TestBwdGradientsCPU::test_inplace_grad_sparse_sampled_addmm_cpu_complex128",
+        "TestBwdGradientsCPU::test_inplace_grad_sparse_sampled_addmm_cpu_float64",
+        "TestBwdGradientsCPU::test_inplace_gradgrad_sparse_sampled_addmm_cpu_complex128",
+        "TestBwdGradientsCPU::test_inplace_gradgrad_sparse_sampled_addmm_cpu_float64"
+      ]
+    },
+    "Numerous errors": {
+      "count": 16,
+      "tests": [
+        "TestFwdGradientsCPU::test_fn_fwgrad_bwgrad_as_strided_cpu_complex128",
+        "TestFwdGradientsCPU::test_fn_fwgrad_bwgrad_as_strided_cpu_float64",
+        "TestFwdGradientsCPU::test_forward_mode_AD_as_strided_cpu_complex128",
+        "TestFwdGradientsCPU::test_forward_mode_AD_as_strided_cpu_float64",
+        "TestFwdGradientsCPU::test_inplace_forward_mode_AD_as_strided_cpu_complex128",
+        "TestFwdGradientsCPU::test_inplace_forward_mode_AD_as_strided_cpu_float64",
+        "TestBwdGradientsCPU::test_fn_fail_gradgrad_as_strided_cpu_complex128",
+        "TestBwdGradientsCPU::test_fn_fail_gradgrad_as_strided_cpu_float64",
+        "TestBwdGradientsCPU::test_fn_grad_as_strided_cpu_complex128",
+        "TestBwdGradientsCPU::test_fn_grad_as_strided_cpu_float64",
+        "TestBwdGradientsCPU::test_fn_gradgrad_as_strided_cpu_complex128",
+        "TestBwdGradientsCPU::test_fn_gradgrad_as_strided_cpu_float64",
+        "TestBwdGradientsCPU::test_inplace_grad_as_strided_cpu_complex128",
+        "TestBwdGradientsCPU::test_inplace_grad_as_strided_cpu_float64",
+        "TestBwdGradientsCPU::test_inplace_gradgrad_as_strided_cpu_complex128",
+        "TestBwdGradientsCPU::test_inplace_gradgrad_as_strided_cpu_float64"
+      ]
+    },
+    "Gradients are incorrect!": {
+      "count": 16,
+      "tests": [
+        "TestFwdGradientsCPU::test_fn_fwgrad_bwgrad_normal_cpu_float64",
+        "TestFwdGradientsCPU::test_fn_fwgrad_bwgrad_normal_number_mean_cpu_float64",
+        "TestFwdGradientsCPU::test_forward_mode_AD_normal_cpu_float64",
+        "TestFwdGradientsCPU::test_forward_mode_AD_normal_number_mean_cpu_float64",
+        "TestFwdGradientsCPU::test_inplace_forward_mode_AD_normal_cpu_float64",
+        "TestFwdGradientsCPU::test_inplace_forward_mode_AD_normal_number_mean_cpu_float64",
+        "TestBwdGradientsCPU::test_fn_fail_gradgrad_normal_cpu_float64",
+        "TestBwdGradientsCPU::test_fn_fail_gradgrad_normal_number_mean_cpu_float64",
+        "TestBwdGradientsCPU::test_fn_grad_normal_cpu_float64",
+        "TestBwdGradientsCPU::test_fn_grad_normal_number_mean_cpu_float64",
+        "TestBwdGradientsCPU::test_fn_gradgrad_normal_cpu_float64",
+        "TestBwdGradientsCPU::test_fn_gradgrad_normal_number_mean_cpu_float64",
+        "TestBwdGradientsCPU::test_inplace_grad_normal_cpu_float64",
+        "TestBwdGradientsCPU::test_inplace_grad_normal_number_mean_cpu_float64",
+        "TestBwdGradientsCPU::test_inplace_gradgrad_normal_cpu_float64",
+        "TestBwdGradientsCPU::test_inplace_gradgrad_normal_number_mean_cpu_float64"
+      ]
+    },
+    "TODO(whc) fix pre-existing bug with cat for newly added opinfo for empty+nonempty": {
+      "count": 14,
+      "tests": [
+        "TestFwdGradientsCPU::test_fn_fwgrad_bwgrad_cat_cpu_complex128",
+        "TestFwdGradientsCPU::test_fn_fwgrad_bwgrad_cat_cpu_float64",
+        "TestFwdGradientsCPU::test_forward_mode_AD_cat_cpu_complex128",
+        "TestFwdGradientsCPU::test_forward_mode_AD_cat_cpu_float64",
+        "TestFwdGradientsCPU::test_inplace_forward_mode_AD_cat_cpu_complex128",
+        "TestFwdGradientsCPU::test_inplace_forward_mode_AD_cat_cpu_float64",
+        "TestBwdGradientsCPU::test_fn_fail_gradgrad_cat_cpu_complex128",
+        "TestBwdGradientsCPU::test_fn_fail_gradgrad_cat_cpu_float64",
+        "TestBwdGradientsCPU::test_fn_gradgrad_cat_cpu_complex128",
+        "TestBwdGradientsCPU::test_fn_gradgrad_cat_cpu_float64",
+        "TestBwdGradientsCPU::test_inplace_grad_cat_cpu_complex128",
+        "TestBwdGradientsCPU::test_inplace_grad_cat_cpu_float64",
+        "TestBwdGradientsCPU::test_inplace_gradgrad_cat_cpu_complex128",
+        "TestBwdGradientsCPU::test_inplace_gradgrad_cat_cpu_float64"
+      ]
+    },
+    "Expected: new_empty_strided is not comparable": {
+      "count": 13,
+      "tests": [
+        "TestCommonCPU::test_complex_half_reference_testing_new_empty_strided_cpu_complex32",
+        "TestCommonCPU::test_non_standard_bool_values_new_empty_strided_cpu_bool",
+        "TestCommonCPU::test_noncontiguous_samples_new_empty_strided_cpu_complex64",
+        "TestCommonCPU::test_noncontiguous_samples_new_empty_strided_cpu_float32",
+        "TestCommonCPU::test_noncontiguous_samples_new_empty_strided_cpu_int64",
+        "TestCommonCPU::test_variant_consistency_eager_new_empty_strided_cpu_complex64",
+        "TestCommonCPU::test_variant_consistency_eager_new_empty_strided_cpu_float32",
+        "TestCompositeComplianceCPU::test_operator_new_empty_strided_cpu_float32",
+        "TestMathBitsCPU::test_conj_view_new_empty_strided_cpu_complex64",
+        "TestMathBitsCPU::test_neg_conj_view_new_empty_strided_cpu_complex128",
+        "TestMathBitsCPU::test_neg_view_new_empty_strided_cpu_float64",
+        "TestJitCPU::test_variant_consistency_jit_new_empty_strided_cpu_complex64",
+        "TestJitCPU::test_variant_consistency_jit_new_empty_strided_cpu_float32"
+      ]
+    },
+    "Errors when storage_offset is included": {
+      "count": 11,
+      "tests": [
+        "TestCommonCPU::test_complex_half_reference_testing_as_strided_cpu_complex32",
+        "TestCommonCPU::test_variant_consistency_eager_as_strided_cpu_complex64",
+        "TestCommonCPU::test_variant_consistency_eager_as_strided_cpu_float32",
+        "TestMathBitsCPU::test_conj_view__refs_as_strided_cpu_complex64",
+        "TestMathBitsCPU::test_conj_view__refs_as_strided_partial_views_cpu_complex64",
+        "TestMathBitsCPU::test_conj_view_as_strided_cpu_complex64",
+        "TestMathBitsCPU::test_neg_conj_view__refs_as_strided_cpu_complex128",
+        "TestMathBitsCPU::test_neg_conj_view__refs_as_strided_partial_views_cpu_complex128",
+        "TestMathBitsCPU::test_neg_view__refs_as_strided_cpu_float64",
+        "TestMathBitsCPU::test_neg_view__refs_as_strided_partial_views_cpu_float64",
+        "TestMathBitsCPU::test_neg_view_as_strided_cpu_float64"
+      ]
+    },
+    "Expected: geometric is not comparable": {
+      "count": 11,
+      "tests": [
+        "TestCommonCPU::test_out__refs_geometric_cpu_float32",
+        "TestCommonCPU::test_out_warning__refs_geometric_cpu",
+        "TestCommonCPU::test_python_ref_torch_fallback__refs_geometric_cpu_bfloat16",
+        "TestCommonCPU::test_python_ref_torch_fallback__refs_geometric_cpu_float16",
+        "TestCommonCPU::test_python_ref_torch_fallback__refs_geometric_cpu_float32",
+        "TestCommonCPU::test_python_ref_torch_fallback__refs_geometric_cpu_float64",
+        "TestCommonCPU::test_python_ref_torch_fallback__refs_geometric_cpu_int16",
+        "TestCommonCPU::test_python_ref_torch_fallback__refs_geometric_cpu_int32",
+        "TestCommonCPU::test_python_ref_torch_fallback__refs_geometric_cpu_int64",
+        "TestCommonCPU::test_python_ref_torch_fallback__refs_geometric_cpu_int8",
+        "TestCommonCPU::test_python_ref_torch_fallback__refs_geometric_cpu_uint8"
+      ]
+    },
+    "CUDA not available": {
+      "count": 10,
+      "tests": [
+        "TestNN::test_CTCLoss_critical_target_len",
+        "TestNN::test_CTCLoss_lengthchecks_cuda",
+        "TestNN::test_CTCLoss_long_targets",
+        "TestNN::test_CTCLoss_zero_infinity",
+        "TestNN::test_batchnorm_nhwc_cuda",
+        "TestNN::test_convert_sync_batchnorm",
+        "TestNN::test_pack_sequence_batch_sizes_throw",
+        "TestNN::test_partial_flat_weights",
+        "TestNN::test_sync_batchnorm_accuracy_cuda",
+        "TestNN::test_sync_batchnorm_backward_elemt"
+      ]
+    },
+    "Overflow when downcasting signed type is undefined": {
+      "count": 10,
+      "tests": [
+        "TestCommonCPU::test_compare_cpu__refs__conversions_byte_cpu_float32",
+        "TestCommonCPU::test_compare_cpu__refs__conversions_char_cpu_float32",
+        "TestCommonCPU::test_compare_cpu__refs__conversions_int_cpu_float32",
+        "TestCommonCPU::test_compare_cpu__refs__conversions_long_cpu_float32",
+        "TestCommonCPU::test_compare_cpu__refs__conversions_short_cpu_float32",
+        "TestCommonCPU::test_compare_cpu_byte_cpu_float32",
+        "TestCommonCPU::test_compare_cpu_char_cpu_float32",
+        "TestCommonCPU::test_compare_cpu_int_cpu_float32",
+        "TestCommonCPU::test_compare_cpu_long_cpu_float32",
+        "TestCommonCPU::test_compare_cpu_short_cpu_float32"
+      ]
+    },
+    "Op claims it doesn't support gradgrad. This is not verified.": {
+      "count": 10,
+      "tests": [
+        "TestBwdGradientsCPU::test_fn_gradgrad__segment_reduce_lengths_cpu_float64",
+        "TestBwdGradientsCPU::test_fn_gradgrad__segment_reduce_offsets_cpu_float64",
+        "TestBwdGradientsCPU::test_fn_gradgrad_cdist_cpu_float64",
+        "TestBwdGradientsCPU::test_fn_gradgrad_grid_sampler_2d_cpu_float64",
+        "TestBwdGradientsCPU::test_fn_gradgrad_nn_functional_embedding_bag_cpu_float64",
+        "TestBwdGradientsCPU::test_fn_gradgrad_nn_functional_grid_sample_cpu_float64",
+        "TestBwdGradientsCPU::test_fn_gradgrad_nn_functional_hardsigmoid_cpu_float64",
+        "TestBwdGradientsCPU::test_fn_gradgrad_nn_functional_multi_margin_loss_cpu_float64",
+        "TestBwdGradientsCPU::test_fn_gradgrad_nn_functional_multilabel_margin_loss_cpu_float64",
+        "TestBwdGradientsCPU::test_fn_gradgrad_nn_functional_pdist_cpu_float64"
+      ]
+    },
+    "testing takes an unreasonably long time, #79528": {
+      "count": 9,
+      "tests": [
+        "TestCommonCPU::test_compare_cpu_special_chebyshev_polynomial_t_cpu_float32",
+        "TestCommonCPU::test_compare_cpu_special_chebyshev_polynomial_u_cpu_float32",
+        "TestCommonCPU::test_compare_cpu_special_hermite_polynomial_he_cpu_float32",
+        "TestCommonCPU::test_compare_cpu_special_laguerre_polynomial_l_cpu_float32",
+        "TestCommonCPU::test_compare_cpu_special_legendre_polynomial_p_cpu_float32",
+        "TestCommonCPU::test_compare_cpu_special_shifted_chebyshev_polynomial_t_cpu_float32",
+        "TestCommonCPU::test_compare_cpu_special_shifted_chebyshev_polynomial_u_cpu_float32",
+        "TestCommonCPU::test_compare_cpu_special_shifted_chebyshev_polynomial_v_cpu_float32",
+        "TestCommonCPU::test_compare_cpu_special_shifted_chebyshev_polynomial_w_cpu_float32"
+      ]
+    },
+    "Test expects tensor input": {
+      "count": 9,
+      "tests": [
+        "TestCommonCPU::test_noncontiguous_samples_normal_in_place_cpu_complex64",
+        "TestCommonCPU::test_noncontiguous_samples_normal_in_place_cpu_float32",
+        "TestCommonCPU::test_noncontiguous_samples_randint_cpu_float32",
+        "TestCommonCPU::test_noncontiguous_samples_randint_cpu_int64",
+        "TestCommonCPU::test_noncontiguous_samples_randn_cpu_complex64",
+        "TestCommonCPU::test_noncontiguous_samples_randn_cpu_float32",
+        "TestMathBitsCPU::test_conj_view__refs_randn_cpu_complex64",
+        "TestMathBitsCPU::test_neg_conj_view__refs_randn_cpu_complex128",
+        "TestMathBitsCPU::test_neg_view__refs_randn_cpu_float64"
+      ]
+    },
+    "Skipped! Only supports single tensor or iterable of tensor outputs.": {
+      "count": 8,
+      "tests": [
+        "TestCommonCPU::test_out__refs_allclose_cpu_float32",
+        "TestCommonCPU::test_out_allclose_cpu_float32",
+        "TestCommonCPU::test_out_equal_cpu_float32",
+        "TestCommonCPU::test_out_histogramdd_cpu_float32",
+        "TestCommonCPU::test_out_warning__refs_allclose_cpu",
+        "TestCommonCPU::test_out_warning_allclose_cpu",
+        "TestCommonCPU::test_out_warning_equal_cpu",
+        "TestCommonCPU::test_out_warning_histogramdd_cpu"
+      ]
+    },
+    "Expected: normal is not comparable": {
+      "count": 8,
+      "tests": [
+        "TestCommonCPU::test_out__refs_normal_in_place_cpu_float32",
+        "TestCommonCPU::test_out_warning__refs_normal_in_place_cpu",
+        "TestCommonCPU::test_python_ref_torch_fallback__refs_normal_in_place_cpu_bfloat16",
+        "TestCommonCPU::test_python_ref_torch_fallback__refs_normal_in_place_cpu_complex128",
+        "TestCommonCPU::test_python_ref_torch_fallback__refs_normal_in_place_cpu_complex64",
+        "TestCommonCPU::test_python_ref_torch_fallback__refs_normal_in_place_cpu_float16",
+        "TestCommonCPU::test_python_ref_torch_fallback__refs_normal_in_place_cpu_float32",
+        "TestCommonCPU::test_python_ref_torch_fallback__refs_normal_in_place_cpu_float64"
+      ]
+    },
+    "Operation not tested with tensors with negative bit.": {
+      "count": 7,
+      "tests": [
+        "TestMathBitsCPU::test_neg_conj_view_index_put_cpu_complex128",
+        "TestMathBitsCPU::test_neg_conj_view_resize__cpu_complex128",
+        "TestMathBitsCPU::test_neg_view_index_put_cpu_float64",
+        "TestMathBitsCPU::test_neg_view_nn_functional_fractional_max_pool2d_cpu_float64",
+        "TestMathBitsCPU::test_neg_view_nn_functional_fractional_max_pool3d_cpu_float64",
+        "TestMathBitsCPU::test_neg_view_resize__cpu_float64",
+        "TestMathBitsCPU::test_neg_view_view_as_complex_cpu_float64"
+      ]
+    },
+    "fewer than 2 devices detected": {
+      "count": 6,
+      "tests": [
+        "TestAutogradDeviceTypeCPU::test_backward_device_cpu",
+        "TestAutogradDeviceTypeCPU::test_inputbuffer_add_multidevice_cpu",
+        "TestAutogradDeviceTypeCPU::test_unused_output_device_cpu",
+        "TestTorchDeviceTypeCPU::test_device_guard_cpu",
+        "TestTorchDeviceTypeCPU::test_multinomial_gpu_device_constrain_cpu",
+        "TestTorchDeviceTypeCPU::test_tensor_set_errors_multigpu_cpu"
+      ]
+    },
+    "Expected: cauchy is not comparable": {
+      "count": 6,
+      "tests": [
+        "TestCommonCPU::test_out__refs_cauchy_cpu_float32",
+        "TestCommonCPU::test_out_warning__refs_cauchy_cpu",
+        "TestCommonCPU::test_python_ref_torch_fallback__refs_cauchy_cpu_bfloat16",
+        "TestCommonCPU::test_python_ref_torch_fallback__refs_cauchy_cpu_float16",
+        "TestCommonCPU::test_python_ref_torch_fallback__refs_cauchy_cpu_float32",
+        "TestCommonCPU::test_python_ref_torch_fallback__refs_cauchy_cpu_float64"
+      ]
+    },
+    "Expected: exponential is not comparable": {
+      "count": 6,
+      "tests": [
+        "TestCommonCPU::test_out__refs_exponential_cpu_float32",
+        "TestCommonCPU::test_out_warning__refs_exponential_cpu",
+        "TestCommonCPU::test_python_ref_torch_fallback__refs_exponential_cpu_bfloat16",
+        "TestCommonCPU::test_python_ref_torch_fallback__refs_exponential_cpu_float16",
+        "TestCommonCPU::test_python_ref_torch_fallback__refs_exponential_cpu_float32",
+        "TestCommonCPU::test_python_ref_torch_fallback__refs_exponential_cpu_float64"
+      ]
+    },
+    "Expected: log_normal is not comparable": {
+      "count": 6,
+      "tests": [
+        "TestCommonCPU::test_out__refs_log_normal_cpu_float32",
+        "TestCommonCPU::test_out_warning__refs_log_normal_cpu",
+        "TestCommonCPU::test_python_ref_torch_fallback__refs_log_normal_cpu_bfloat16",
+        "TestCommonCPU::test_python_ref_torch_fallback__refs_log_normal_cpu_float16",
+        "TestCommonCPU::test_python_ref_torch_fallback__refs_log_normal_cpu_float32",
+        "TestCommonCPU::test_python_ref_torch_fallback__refs_log_normal_cpu_float64"
+      ]
+    },
+    "test requires CUDA": {
+      "count": 5,
+      "tests": [
+        "TestAutograd::test_graph_save_on_cpu_cuda",
+        "TestAutogradFunctional::test_construct_standard_basis_for_cuda_base_tensor",
+        "TestAutogradFunctional::test_construct_standard_basis_for_cuda_logging_tensor",
+        "TestAutogradFunctional::test_jacobian_vectorize_correctness_different_devices_base_tensor",
+        "TestAutogradFunctional::test_jacobian_vectorize_correctness_different_devices_logging_tensor"
+      ]
+    },
+    "multi-GPU not supported": {
+      "count": 5,
+      "tests": [
+        "TestNN::test_broadcast_double_backwards_gpu",
+        "TestNN::test_broadcast_no_grad",
+        "TestNN::test_broadcast_not_requiring_grad",
+        "TestNN::test_projections_lstm_check_device",
+        "TestNN::test_rnn_check_device"
+      ]
+    },
+    "Scipy v1.0 and/or numpy not found": {
+      "count": 5,
+      "tests": [
+        "TestNNDeviceTypeCPU::test_affine_2d_rotate0_cpu",
+        "TestNNDeviceTypeCPU::test_affine_2d_rotate45_cpu",
+        "TestNNDeviceTypeCPU::test_affine_2d_rotate90_cpu",
+        "TestNNDeviceTypeCPU::test_affine_2d_rotateRandom_cpu",
+        "TestNNDeviceTypeCPU::test_affine_3d_rotateRandom_cpu"
       ]
     },
     "67470!": {
