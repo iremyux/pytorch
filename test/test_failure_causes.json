@@ -9158,7 +9158,6 @@
         "TestFakeTensorCPU::test_fake_crossref_backward_amp_normal_cpu_float32",
         "TestFakeTensorCPU::test_fake_crossref_backward_amp_ormqr_cpu_float32",
         "TestFakeTensorCPU::test_fake_crossref_backward_amp_outer_cpu_float32",
-        "TestFakeTensorCPU::test_fake_crossref_backward_amp_pca_lowrank_cpu_float32",
         "TestFakeTensorCPU::test_fake_crossref_backward_amp_permute_cpu_float32",
         "TestFakeTensorCPU::test_fake_crossref_backward_amp_polar_cpu_float32",
         "TestFakeTensorCPU::test_fake_crossref_backward_amp_polygamma_polygamma_n_0_cpu_float32",
@@ -9237,8 +9236,6 @@
         "TestFakeTensorCPU::test_fake_crossref_backward_amp_sub_cpu_float32",
         "TestFakeTensorCPU::test_fake_crossref_backward_amp_sum_cpu_float32",
         "TestFakeTensorCPU::test_fake_crossref_backward_amp_sum_to_size_cpu_float32",
-        "TestFakeTensorCPU::test_fake_crossref_backward_amp_svd_cpu_float32",
-        "TestFakeTensorCPU::test_fake_crossref_backward_amp_svd_lowrank_cpu_float32",
         "TestFakeTensorCPU::test_fake_crossref_backward_amp_t_cpu_float32",
         "TestFakeTensorCPU::test_fake_crossref_backward_amp_take_along_dim_cpu_float32",
         "TestFakeTensorCPU::test_fake_crossref_backward_amp_take_cpu_float32",
@@ -9636,7 +9633,6 @@
         "TestFakeTensorCPU::test_fake_crossref_backward_no_amp_normal_cpu_float32",
         "TestFakeTensorCPU::test_fake_crossref_backward_no_amp_ormqr_cpu_float32",
         "TestFakeTensorCPU::test_fake_crossref_backward_no_amp_outer_cpu_float32",
-        "TestFakeTensorCPU::test_fake_crossref_backward_no_amp_pca_lowrank_cpu_float32",
         "TestFakeTensorCPU::test_fake_crossref_backward_no_amp_permute_cpu_float32",
         "TestFakeTensorCPU::test_fake_crossref_backward_no_amp_pinverse_cpu_float32",
         "TestFakeTensorCPU::test_fake_crossref_backward_no_amp_polar_cpu_float32",
@@ -9716,8 +9712,6 @@
         "TestFakeTensorCPU::test_fake_crossref_backward_no_amp_sub_cpu_float32",
         "TestFakeTensorCPU::test_fake_crossref_backward_no_amp_sum_cpu_float32",
         "TestFakeTensorCPU::test_fake_crossref_backward_no_amp_sum_to_size_cpu_float32",
-        "TestFakeTensorCPU::test_fake_crossref_backward_no_amp_svd_cpu_float32",
-        "TestFakeTensorCPU::test_fake_crossref_backward_no_amp_svd_lowrank_cpu_float32",
         "TestFakeTensorCPU::test_fake_crossref_backward_no_amp_t_cpu_float32",
         "TestFakeTensorCPU::test_fake_crossref_backward_no_amp_take_along_dim_cpu_float32",
         "TestFakeTensorCPU::test_fake_crossref_backward_no_amp_take_cpu_float32",
@@ -18764,25 +18758,6 @@
         "TestBwdGradientsCPU::test_inplace_gradgrad_normal_number_mean_cpu_float64"
       ]
     },
-    "TODO(whc) fix pre-existing bug with cat for newly added opinfo for empty+nonempty": {
-      "count": 14,
-      "tests": [
-        "TestFwdGradientsCPU::test_fn_fwgrad_bwgrad_cat_cpu_complex128",
-        "TestFwdGradientsCPU::test_fn_fwgrad_bwgrad_cat_cpu_float64",
-        "TestFwdGradientsCPU::test_forward_mode_AD_cat_cpu_complex128",
-        "TestFwdGradientsCPU::test_forward_mode_AD_cat_cpu_float64",
-        "TestFwdGradientsCPU::test_inplace_forward_mode_AD_cat_cpu_complex128",
-        "TestFwdGradientsCPU::test_inplace_forward_mode_AD_cat_cpu_float64",
-        "TestBwdGradientsCPU::test_fn_fail_gradgrad_cat_cpu_complex128",
-        "TestBwdGradientsCPU::test_fn_fail_gradgrad_cat_cpu_float64",
-        "TestBwdGradientsCPU::test_fn_gradgrad_cat_cpu_complex128",
-        "TestBwdGradientsCPU::test_fn_gradgrad_cat_cpu_float64",
-        "TestBwdGradientsCPU::test_inplace_grad_cat_cpu_complex128",
-        "TestBwdGradientsCPU::test_inplace_grad_cat_cpu_float64",
-        "TestBwdGradientsCPU::test_inplace_gradgrad_cat_cpu_complex128",
-        "TestBwdGradientsCPU::test_inplace_gradgrad_cat_cpu_float64"
-      ]
-    },
     "Expected: new_empty_strided is not comparable": {
       "count": 13,
       "tests": [
@@ -19006,16 +18981,6 @@
         "TestNN::test_broadcast_not_requiring_grad",
         "TestNN::test_projections_lstm_check_device",
         "TestNN::test_rnn_check_device"
-      ]
-    },
-    "Scipy v1.0 and/or numpy not found": {
-      "count": 5,
-      "tests": [
-        "TestNNDeviceTypeCPU::test_affine_2d_rotate0_cpu",
-        "TestNNDeviceTypeCPU::test_affine_2d_rotate45_cpu",
-        "TestNNDeviceTypeCPU::test_affine_2d_rotate90_cpu",
-        "TestNNDeviceTypeCPU::test_affine_2d_rotateRandom_cpu",
-        "TestNNDeviceTypeCPU::test_affine_3d_rotateRandom_cpu"
       ]
     },
     "67470!": {
