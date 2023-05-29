@@ -1959,7 +1959,6 @@ def check_inplace_view(func, input, rs, input_size, input_strides):
 # that operators have expected tags based on their input and
 # ouput tensor properties
 class TagsMode(TorchDispatchMode):
-
     def __torch_dispatch__(self, func, types, args=(), kwargs=None):
         if isinstance(args[0], torch.Tensor):
             old_size = args[0].size()
