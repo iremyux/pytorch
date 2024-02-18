@@ -19,14 +19,14 @@
             "name": "Test Single",
             "type": "python",
             "request": "launch",
-            "program": "test_torch.py",
+            "program": "test_ops_fwd_gradients.py",
             "cwd": "${workspaceFolder}/test",
             "args": [
                "-vvvv",
                "-rfEsxXP",
                "-p", "no:xdist",
                "--use-pytest",
-               "-k", "conv_transposed_backward_agnostic_to_memory_format_cpu"
+               "-k", "test_forward_mode_AD_dot_cpu_complex128"
             ],
             "console": "integratedTerminal",
             "justMyCode": false
@@ -41,7 +41,7 @@
                "-vvvv",
                "-rfEsxXP",
                "-p", "no:xdist",
-               "--use-pytest"
+               "--use-pytest",
             ],
             "console": "integratedTerminal"
         },
@@ -98,7 +98,6 @@
                "-rfEsxXP",
                "-p", "no:xdist",
                "--use-pytest",
-               "-k", "dtypes_linalg_lu_cpu or dtypes_linalg_lu_factor_cpu or dtypes_linalg_lu_factor_ex_cpu or dtypes_linalg_lu_solve_cpu or dtypes_linalg_solve_triangular_cpu or complex_half_reference_testing_H_cpu_complex32 or dtypes_lu_cpu or dtypes_lu_solve_cpu or variant_consistency_eager_linalg_lu_solve_cpu_complex64 or variant_consistency_eager_linalg_solve_triangular_cpu_complex64 or variant_consistency_eager_lu_solve_cpu_complex64 or conj_view_linalg_lu_solve_cpu_complex64 or conj_view_linalg_solve_triangular_cpu_complex64 or conj_view_lu_solve_cpu_complex64 or neg_conj_view_lu_solve_cpu_complex128"
             ],
             "console": "integratedTerminal"
         },
