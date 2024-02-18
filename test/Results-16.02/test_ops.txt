@@ -6,15 +6,6 @@ FAILED [0.2866s] test_ops.py::TestCommonCPU::test_out__refs_linalg_svd_cpu_float
 FAILED [0.0501s] test_ops.py::TestCommonCPU::test_out__refs_linalg_svdvals_cpu_float32 - Exception: Caused by sample input at index 0: SampleInput(input=Tensor[size=(5, 5), device="cpu", dtype=torch.float32], args=(), kwargs={}, broadcasts_input=False, name='')
 FAILED [0.0673s] test_ops.py::TestCommonCPU::test_out_warning__refs_linalg_matrix_norm_cpu - Exception: Caused by sample input at index 4: SampleInput(input=Tensor[size=(2, 2), device="cpu", dtype=torch.float32], args=('nuc',(-2,-1),True), kwargs={}, broadcasts_input=False, name='')
 FAILED [0.2138s] test_ops.py::TestCommonCPU::test_out_warning__refs_linalg_norm_cpu - Exception: Caused by sample input at index 44: SampleInput(input=Tensor[size=(5, 5), device="cpu", dtype=torch.float32], args=('nuc'), kwargs={'keepdim': 'False'}, broadcasts_input=False, name='')
-<<<<<<< HEAD
-<<<<<<< HEAD
-FAILED [0.2395s] test_ops.py::TestCommonCPU::test_out_warning__refs_linalg_norm_cpu - Exception: Caused by sample input at index 31: SampleInput(input=Tensor[size=(3, 0), device="cpu", dtype=torch.float32], args=(), kwargs={'full_matrices': 'False'}, broadcasts_input=False, name='')
-=======
-FAILED [0.2395s] test_ops.py::TestCommonCPU::test_out_warning__refs_linalg_svd_cpu - Exception: Caused by sample input at index 31: SampleInput(input=Tensor[size=(3, 0), device="cpu", dtype=torch.float32], args=(), kwargs={'full_matrices': 'False'}, broadcasts_input=False, name='')
->>>>>>> 52a1ece502f (modifying launch.json according to the failures and adding test results)
-=======
-FAILED [0.2395s] test_ops.py::TestCommonCPU::test_out_warning__refs_linalg_norm_cpu - Exception: Caused by sample input at index 31: SampleInput(input=Tensor[size=(3, 0), device="cpu", dtype=torch.float32], args=(), kwargs={'full_matrices': 'False'}, broadcasts_input=False, name='')
->>>>>>> 4a36fe060eb (adding more test results and errors)
 FAILED [0.0515s] test_ops.py::TestCommonCPU::test_out_warning__refs_linalg_svdvals_cpu - Exception: Caused by sample input at index 0: SampleInput(input=Tensor[size=(5, 5), device="cpu", dtype=torch.float32], args=(), kwargs={}, broadcasts_input=False, name='')
 FAILED [0.3451s] test_ops.py::TestCommonCPU::test_python_ref__refs_div_trunc_rounding_cpu_float16 - Exception: Caused by reference input at index 52: SampleInput(input=Tensor[size=(5, 10, 5), device="cpu", dtype=torch.float16, contiguous=False], args=TensorList[Tensor[size=(10, 5), device="...
 FAILED [0.0657s] test_ops.py::TestCommonCPU::test_python_ref__refs_linalg_matrix_norm_cpu_complex128 - Exception: Caused by sample input at index 4: SampleInput(input=Tensor[size=(2, 2), device="cpu", dtype=torch.complex128], args=('nuc',(-2,-1),True), kwargs={}, broadcasts_input=False, nam...
@@ -668,7 +659,6 @@ XFAIL [0.0531s] test_ops.py::TestMathBitsCPU::test_neg_view_uniform_cpu_float64 
 XFAIL [0.0470s] test_ops.py::TestMathBitsCPU::test_neg_view_zeros_cpu_float64 - reason:
 XFAIL [0.0550s] test_ops.py::TestFakeTensorCPU::test_fake_autocast_item_cpu_float32 - reason:
 XFAIL [0.0535s] test_ops.py::TestFakeTensorCPU::test_fake_item_cpu_float32 - reason:
-
 ====================================================================================================== 80 failed, 21574 passed, 9308 skipped, 10 deselected, 360 xfailed in 5725.16s (1:35:25) ======================================================================================================
 
 __________________________________________________________________________________________________________________________ TestCommonCPU.test_dtypes__refs_linalg_svd_cpu ___________________________________________________________________________________________________________________________ 
@@ -7037,6 +7027,3 @@ To execute this test, run the following from the base repo dir:
 This message can be suppressed by setting PYTORCH_PRINT_REPRO_ON_FAILURE=0
 
 ====================================================================================================== 80 failed, 21574 passed, 9308 skipped, 10 deselected, 360 xfailed in 5725.16s (1:35:25) ======================================================================================================
-
-This message can be suppressed by setting PYTORCH_PRINT_REPRO_ON_FAILURE=0
->>>>>>> 4a36fe060eb (adding more test results and errors)
