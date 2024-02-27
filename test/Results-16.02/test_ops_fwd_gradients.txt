@@ -67,7 +67,6 @@ XFAIL [0.1043s] test_ops_fwd_gradients.py::TestFwdGradientsCPU::test_inplace_for
 XFAIL [0.0769s] test_ops_fwd_gradients.py::TestFwdGradientsCPU::test_inplace_forward_mode_AD_nn_functional_rrelu_cpu_float64 - reason:
 XFAIL [0.0766s] test_ops_fwd_gradients.py::TestFwdGradientsCPU::test_inplace_forward_mode_AD_scatter_reduce_prod_cpu_float64 - reason:
 ======================================================================================================== 1 failed, 1542 passed, 1491 skipped, 2 deselected, 39 xfailed in 948.99s (0:15:48) ========================================================================================================= 
-<<<<<<< HEAD
 
 ============================================================================================================================================= FAILURES ============================================================================================================================================== 
 ____________________________________________________________________________________________________________________ TestFwdGradientsCPU.test_forward_mode_AD_dot_cpu_complex128 ____________________________________________________________________________________________________________________ 
@@ -147,4 +146,5 @@ To execute this test, run the following from the base repo dir:
 
 This message can be suppressed by setting PYTORCH_PRINT_REPRO_ON_FAILURE=0
 =======
->>>>>>> 52a1ece502f (modifying launch.json according to the failures and adding test results)
+This message can be suppressed by setting PYTORCH_PRINT_REPRO_ON_FAILURE=0
+>>>>>>> 4a36fe060eb (adding more test results and errors)
