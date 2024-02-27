@@ -68,6 +68,9 @@ XFAIL [0.0769s] test_ops_fwd_gradients.py::TestFwdGradientsCPU::test_inplace_for
 XFAIL [0.0766s] test_ops_fwd_gradients.py::TestFwdGradientsCPU::test_inplace_forward_mode_AD_scatter_reduce_prod_cpu_float64 - reason:
 ======================================================================================================== 1 failed, 1542 passed, 1491 skipped, 2 deselected, 39 xfailed in 948.99s (0:15:48) ========================================================================================================= 
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> a37efa2d29 (adding more test results and errors)
 
 ============================================================================================================================================= FAILURES ============================================================================================================================================== 
 ____________________________________________________________________________________________________________________ TestFwdGradientsCPU.test_forward_mode_AD_dot_cpu_complex128 ____________________________________________________________________________________________________________________ 
@@ -145,6 +148,7 @@ Exception: Caused by sample input at index 0: SampleInput(input=Tensor[size=(5,)
 To execute this test, run the following from the base repo dir:
      python test_ops_fwd_gradients.py -k test_forward_mode_AD_dot_cpu_complex128
 
+<<<<<<< HEAD
 This message can be suppressed by setting PYTORCH_PRINT_REPRO_ON_FAILURE=0
 <<<<<<< HEAD
 =======
@@ -158,3 +162,6 @@ This message can be suppressed by setting PYTORCH_PRINT_REPRO_ON_FAILURE=0
 >>>>>>> e4d52faaa0 (adding more test results and errors)
 =======
 >>>>>>> bfd1b30ff8 (modifying launch.json according to the failures and adding test results)
+=======
+This message can be suppressed by setting PYTORCH_PRINT_REPRO_ON_FAILURE=0
+>>>>>>> a37efa2d29 (adding more test results and errors)
