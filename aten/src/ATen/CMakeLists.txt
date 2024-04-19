@@ -437,11 +437,11 @@ if(NOT EMSCRIPTEN AND NOT INTERN_BUILD_MOBILE AND NOT (MSVC AND CMAKE_SYSTEM_PRO
   endif()
 
   if(NOT USE_SYSTEM_SLEEF)
-    set(SLEEF_BUILD_SHARED_LIBS OFF CACHE BOOL "Build sleef static" FORCE)
-    set(SLEEF_BUILD_DFT OFF CACHE BOOL "Don't build sleef DFT lib" FORCE)
-    set(SLEEF_BUILD_GNUABI_LIBS OFF CACHE BOOL "Don't build sleef gnuabi libs" FORCE)
-    set(SLEEF_BUILD_TESTS OFF CACHE BOOL "Don't build sleef tests" FORCE)
-    set(SLEEF_BUILD_SCALAR_LIB OFF CACHE BOOL "libsleefscalar will be built." FORCE)
+    set(BUILD_SHARED_LIBS OFF CACHE BOOL "Build sleef static" FORCE)
+    set(BUILD_DFT OFF CACHE BOOL "Don't build sleef DFT lib" FORCE)
+    set(BUILD_GNUABI_LIBS OFF CACHE BOOL "Don't build sleef gnuabi libs" FORCE)
+    set(BUILD_TESTS OFF CACHE BOOL "Don't build sleef tests" FORCE)
+    set(OLD_CMAKE_BUILD_TYPE ${CMAKE_BUILD_TYPE})
     if(CMAKE_SYSTEM_NAME STREQUAL "Darwin")
       if(CMAKE_SYSTEM_PROCESSOR STREQUAL "arm64" OR CMAKE_OSX_ARCHITECTURES MATCHES "arm64")
         set(DISABLE_SVE ON CACHE BOOL "Xcode's clang-12.5 crashes while trying to compile SVE code" FORCE)
@@ -462,9 +462,12 @@ if(NOT EMSCRIPTEN AND NOT INTERN_BUILD_MOBILE AND NOT (MSVC AND CMAKE_SYSTEM_PRO
   endif()
   list(APPEND ATen_CPU_DEPENDENCY_LIBS sleef)
 
-  if(NOT MSVC)
-    set(CMAKE_C_FLAGS_DEBUG ${OLD_CMAKE_C_FLAGS_DEBUG})
-  endif()
+  set(CMAKE_C_FLAGS_DEBUG ${OLD_CMAKE_C_FLAGS_DEBUG})
+  set(CMAKE_CXX_FLAGS ${OLD_CMAKE_CXX_FLAGS})
+
+  # Set these back. TODO: Use SLEEF_ to pass these instead
+  set(BUILD_SHARED_LIBS ${__aten_sleef_build_shared_libs} CACHE BOOL "Build shared libs" FORCE)
+  set(BUILD_TESTS ${__aten_sleef_build_tests} CACHE BOOL "Build tests" FORCE)
 endif()
 
 if(USE_CUDA AND NOT USE_ROCM)
