@@ -84,7 +84,6 @@
                "-rfEsxXP",
                "-p", "no:xdist",
                "--use-pytest",
-               "-k", "not test_dtypes_linalg_vecdot_cpu and not test_numpy_ref_linalg_vecdot_cpu_complex128 and not test_python_ref__refs_linalg_vecdot_cpu_complex128 and not test_dtypes__refs_var_cpu and not test_python_ref__refs_linalg_vecdot_cpu_complex64 and not test_python_ref_torch_fallback__refs_linalg_vecdot_cpu_complex128 and not test_python_ref_torch_fallback__refs_linalg_vecdot_cpu_complex64 and not test_variant_consistency_eager_linalg_vecdot_cpu_complex64 and not test_conj_view_linalg_vecdot_cpu_complex64 and not test_neg_conj_view_linalg_vecdot_cpu_complex128"
             ],
             "console": "integratedTerminal"
         },
@@ -113,7 +112,6 @@
                "-rfEsxXP",
                "-p", "no:xdist",
                "--use-pytest",
-               "-k", "not test_fn_fwgrad_bwgrad_linalg_vecdot_cpu_complex128 and not test_fn_grad_linalg_vecdot_cpu_complex128 and not test_forward_mode_AD_linalg_vecdot_cpu_complex128"
             ],
             "console": "integratedTerminal"
         },
@@ -128,7 +126,6 @@
                "-rfEsxXP",
                "-p", "no:xdist",
                "--use-pytest",
-               "-k", "fn_fwgrad_bwgrad_linalg_lu_cpu_complex128 or fn_fwgrad_bwgrad_linalg_lu_factor_cpu_complex128 or fn_fwgrad_bwgrad_linalg_lu_factor_ex_cpu_complex128 or fn_fwgrad_bwgrad_linalg_lu_solve_cpu_complex128 or fn_fwgrad_bwgrad_linalg_solve_triangular_cpu_complex128 or fn_fwgrad_bwgrad_lu_cpu_complex128 or fn_fwgrad_bwgrad_lu_solve_cpu_complex128 or forward_mode_AD_linalg_lu_solve_cpu_complex128 or forward_mode_AD_linalg_solve_triangular_cpu_complex128",
             ],
             "console": "integratedTerminal"
         },
@@ -143,7 +140,6 @@
                "-rfEsxXP",
                "-p", "no:xdist",
                "--use-pytest",
-                "-k", "not fn_grad_linalg_lu_cpu_complex128 and not fn_grad_linalg_lu_factor_cpu_complex128 and not fn_grad_linalg_lu_factor_ex_cpu_complex128 and not fn_grad_linalg_lu_solve_cpu_complex128 and not fn_grad_linalg_solve_triangular_cpu_complex128 and not fn_grad_linalg_tensorinv_cpu_complex128 and not fn_grad_linalg_tensorinv_cpu_float64 and not fn_grad_linalg_tensorsolve_cpu_complex128 and not fn_grad_linalg_tensorsolve_cpu_float64 and not fn_grad_linalg_vecdot_cpu_complex128 and not fn_grad_lu_cpu_complex128 and not fn_grad_lu_solve_cpu_complex128 and not fn_gradgrad_linalg_lu_cpu_complex128 and not fn_gradgrad_linalg_lu_factor_cpu_complex128 and not fn_gradgrad_linalg_lu_factor_ex_cpu_complex128 and not fn_gradgrad_linalg_lu_solve_cpu_complex128 and not fn_gradgrad_linalg_solve_triangular_cpu_complex128 and not fn_gradgrad_linalg_tensorinv_cpu_complex128 and not fn_gradgrad_linalg_tensorinv_cpu_float64 and not fn_gradgrad_linalg_tensorsolve_cpu_complex128 and not fn_gradgrad_linalg_tensorsolve_cpu_float64 and not fn_gradgrad_linalg_vecdot_cpu_complex128 and not fn_gradgrad_lu_cpu_complex128 and not fn_gradgrad_lu_solve_cpu_complex128"    
             ],
             "console": "integratedTerminal"
         },
@@ -158,7 +154,6 @@
                "-rfEsxXP",
                "-p", "no:xdist",
                "--use-pytest",
-               "-k", "fn_grad_linalg_lu_cpu_complex128 or fn_grad_linalg_lu_factor_cpu_complex128 or fn_grad_linalg_lu_factor_ex_cpu_complex128 or fn_grad_linalg_lu_solve_cpu_complex128 or fn_grad_linalg_solve_triangular_cpu_complex128 or fn_grad_lu_cpu_complex128 or fn_grad_lu_solve_cpu_complex128 or fn_gradgrad_linalg_lu_cpu_complex128 or fn_gradgrad_linalg_lu_factor_cpu_complex128 or fn_gradgrad_linalg_lu_factor_ex_cpu_complex128 or fn_gradgrad_linalg_lu_solve_cpu_complex128 or fn_gradgrad_linalg_solve_triangular_cpu_complex128 or fn_gradgrad_lu_cpu_complex128 or fn_gradgrad_lu_solve_cpu_complex128"
              ],
             "console": "integratedTerminal"
         },
@@ -173,8 +168,7 @@
                "-rfEsxXP",
                "-p", "no:xdist",
                "--use-pytest",
-               "-k", "not test_variant_consistency_jit_linalg_vecdot_cpu_complex64"
-             ],
+            ],
             "console": "integratedTerminal"
         },
         {
@@ -188,8 +182,7 @@
                "-rfEsxXP",
                "-p", "no:xdist",
                "--use-pytest",
-               "-k", "variant_consistency_jit_linalg_lu_cpu_complex64 or variant_consistency_jit_linalg_lu_factor_cpu_complex64 or variant_consistency_jit_linalg_lu_factor_ex_cpu_complex64 or variant_consistency_jit_linalg_lu_solve_cpu_complex64 or variant_consistency_jit_linalg_solve_triangular_cpu_complex64 or variant_consistency_jit_lu_cpu_complex64 or variant_consistency_jit_lu_solve_cpu_complex64"
-             ],
+            ],
             "console": "integratedTerminal"
         },
         {
@@ -203,7 +196,7 @@
                "-rfEsxXP",
                "-p", "no:xdist",
                "--use-pytest",
-               "-k", "not test_index_add_correctness"
+               "-k", "not test_index_add_correctness and not test_parallel_cow_materialize_error_cpu_bfloat16"
             ],
             "console": "integratedTerminal"
         }
