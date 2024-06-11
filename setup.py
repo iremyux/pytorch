@@ -1111,7 +1111,7 @@ def main():
         "networkx",
         "jinja2",
         "fsspec",
-        'mkl>=2021.1.1,<=2021.4.0; platform_system == "Windows"',
+        'mkl>=2021.1.1,<=2021.4.0; platform_system == "Windows" and platform_machine != "ARM64"',
     ]
 
     # Parse the command line and check the arguments before we proceed with
