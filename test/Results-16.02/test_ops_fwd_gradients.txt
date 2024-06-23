@@ -69,8 +69,11 @@ XFAIL [0.0766s] test_ops_fwd_gradients.py::TestFwdGradientsCPU::test_inplace_for
 ======================================================================================================== 1 failed, 1542 passed, 1491 skipped, 2 deselected, 39 xfailed in 948.99s (0:15:48) ========================================================================================================= 
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 >>>>>>> a37efa2d29 (adding more test results and errors)
+=======
+>>>>>>> 24137dc2cb8b34fe1d4e347de4b57a61da73ae35
 
 ============================================================================================================================================= FAILURES ============================================================================================================================================== 
 ____________________________________________________________________________________________________________________ TestFwdGradientsCPU.test_forward_mode_AD_dot_cpu_complex128 ____________________________________________________________________________________________________________________ 
@@ -149,6 +152,7 @@ To execute this test, run the following from the base repo dir:
      python test_ops_fwd_gradients.py -k test_forward_mode_AD_dot_cpu_complex128
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 This message can be suppressed by setting PYTORCH_PRINT_REPRO_ON_FAILURE=0
 <<<<<<< HEAD
 =======
@@ -165,3 +169,7 @@ This message can be suppressed by setting PYTORCH_PRINT_REPRO_ON_FAILURE=0
 =======
 This message can be suppressed by setting PYTORCH_PRINT_REPRO_ON_FAILURE=0
 >>>>>>> a37efa2d29 (adding more test results and errors)
+=======
+This message can be suppressed by setting PYTORCH_PRINT_REPRO_ON_FAILURE=0
+>>>>>>> 8e6e8e9244a5f33c88f020182fc82d0e255e21eb
+>>>>>>> 24137dc2cb8b34fe1d4e347de4b57a61da73ae35
