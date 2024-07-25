@@ -1,2 +1,0 @@
-AssertionError: Example code timed out! See the code sample in the test for details.
-TestAutograd.test_pynode_destruction_deadlock
