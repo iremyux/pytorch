@@ -12,7 +12,7 @@ It does so by:
 """
 
 import warnings
-from contextlib import nullcontext
+from contextlib import contextmanager, nullcontext
 from functools import wraps
 from typing import Any, Callable, List, Tuple, Union
 from unittest.mock import patch
@@ -24,6 +24,7 @@ from torch import Tensor
 from torch._decomp.decompositions_for_rng import PhiloxStateTracker
 from torch._guards import detect_fake_mode
 from torch._prims_common import CUDARngStateHelper
+from torch.fx.experimental.proxy_tensor import _enable_thunkify, get_proxy_mode
 from torch.fx.experimental.symbolic_shapes import (
     definitely_false,
     PropagateUnbackedSymInts,
@@ -330,6 +331,19 @@ def create_functionalized_rng_ops_wrapper(func, args, trace_joint=True) -> Any:
         return traced_forward, (*args, fwd_seed, fwd_base_offset)
 
 
+@contextmanager
+def set_partitioner_tag(tag: str):
+    meta_key = "partitioner_tag"
+    assert fx_traceback.has_preserved_node_meta()
+
+    original_val = fx_traceback.current_meta.get(meta_key, None)
+    fx_traceback.current_meta[meta_key] = tag
+    try:
+        yield
+    finally:
+        fx_traceback.current_meta[meta_key] = original_val
+
+
 # This creates the final function that we want to trace using make_fx(),
 # in both aot_dispatch_autograd and aot_dispatch_base.
 # Preconditions:
@@ -373,18 +387,27 @@ def create_functionalized_fn(
         assert all(token.numel() == 0 for token in tokens)
 
         with disable_above:
-            # Wrap inputs into functional wrappers
-            f_args = pytree.tree_map(to_fun, args)
-            f_tokens = pytree.tree_map(to_fun, tokens)
+            # The functionalization code here can potentially trigger traces
+            # into the graph, but we'd prefer to NOT do this, because if we
+            # trace them now, we will end up with FX nodes that don't have
+            # module stack annotations, which makes unflattener unhappy.
+            proxy_mode = get_proxy_mode()
+            assert proxy_mode is not None
+            with _enable_thunkify(proxy_mode.tracer):
+                # Wrap inputs into functional wrappers
+                f_args = pytree.tree_map(to_fun, args)
+                f_tokens = pytree.tree_map(to_fun, tokens)
 
-            # Populate the current FunctionalTensorMode with the tokens per
-            # operator. See Note [FunctionalTensorMode is Stateful]
-            functional_tensor_mode = torch.utils._python_dispatch._detect_infra_mode(
-                torch._C._TorchDispatchModeKey.FUNCTIONAL
-            )
-            assert functional_tensor_mode is not None
-            for i, k in enumerate(meta.tokens.keys()):
-                functional_tensor_mode._tokens[k] = f_tokens[i]
+                # Populate the current FunctionalTensorMode with the tokens per
+                # operator. See Note [FunctionalTensorMode is Stateful]
+                functional_tensor_mode = (
+                    torch.utils._python_dispatch._detect_infra_mode(
+                        torch._C._TorchDispatchModeKey.FUNCTIONAL
+                    )
+                )
+                assert functional_tensor_mode is not None
+                for i, k in enumerate(meta.tokens.keys()):
+                    functional_tensor_mode._tokens[k] = f_tokens[i]
 
             # Run the joint
             f_outs = fn(*f_args)
@@ -444,7 +467,11 @@ def create_functionalized_fn(
                 ):
                     # Not banning here mutations on inpt_info.requires_grad -
                     # we'll check at runtime and fail only when backward is under torch.is_grad_enabled (create_graph)
-                    before.copy_(after)
+                    # Add node meta for copy_ for partitioner that this node should be in backward graph.
+                    with torch.fx.traceback.preserve_node_meta(), set_partitioner_tag(
+                        "must_be_in_backward"
+                    ):
+                        before.copy_(after)
                     meta.indices_of_inputs_that_requires_grad_with_mutations_in_bw.append(
                         idx
                     )
