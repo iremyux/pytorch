@@ -522,6 +522,14 @@ class TritonKernelWrapperMutation(HigherOrderOperator):
     def __init__(self) -> None:
         super().__init__("triton_kernel_wrapper_mutation")
 
+    def __call__(self, kernel_idx, constant_args_idx, grid, kwargs):
+        return super().__call__(
+            kernel_idx=kernel_idx,
+            constant_args_idx=constant_args_idx,
+            grid=grid,
+            kwargs=kwargs,
+        )
+
 
 triton_kernel_wrapper_mutation = TritonKernelWrapperMutation()
 
@@ -530,6 +538,15 @@ triton_kernel_wrapper_mutation = TritonKernelWrapperMutation()
 class TritonKernelWrapperFunctional(HigherOrderOperator):
     def __init__(self) -> None:
         super().__init__("triton_kernel_wrapper_functional")
+
+    def __call__(self, kernel_idx, constant_args_idx, grid, kwargs, tensors_to_clone):
+        return super().__call__(
+            kernel_idx=kernel_idx,
+            constant_args_idx=constant_args_idx,
+            grid=grid,
+            kwargs=kwargs,
+            tensors_to_clone=tensors_to_clone,
+        )
 
 
 triton_kernel_wrapper_functional = TritonKernelWrapperFunctional()
@@ -1004,9 +1021,21 @@ class TraceableTritonKernelWrapper:
         return tracing_triton_hopifier_singleton.call_getitem(self, args)
 
     def run(self, *args, **kwargs):
-        return tracing_triton_hopifier_singleton.call_run(self, args, kwargs, None)
+        from torch._library.triton import is_capture_triton_enabled
+
+        if is_capture_triton_enabled():
+            return tracing_triton_hopifier_singleton.call_run(self, args, kwargs, None)
+        else:
+            assert self.kernel is not None
+            return self.kernel.run(*args, **kwargs)
 
     def __call__(self, *args, **kwargs):
-        return tracing_triton_hopifier_singleton.call_triton_kernel(
-            self, args, kwargs, None
-        )
+        from torch._library.triton import is_capture_triton_enabled
+
+        if is_capture_triton_enabled():
+            return tracing_triton_hopifier_singleton.call_triton_kernel(
+                self, args, kwargs, None
+            )
+        else:
+            assert self.kernel is not None
+            return self.kernel[self.grid](*args, **kwargs)

@@ -42,6 +42,7 @@ __all__ = [
     "ScheduleGPipe",
     "ScheduleInterleaved1F1B",
     "ScheduleLoopedBFS",
+    "ScheduleInterleavedZeroBubble",
 ]
 
 logger = logging.getLogger(__name__)
@@ -363,7 +364,7 @@ class _PipelineSchedule(ABC):
 
         # Holds the losses for each microbatch.
         self._internal_losses: List[torch.Tensor] = []
-        logger.info(f"Using {self.__class__.__name__}")  # noqa: G004
+        logger.info("Using %s", self.__class__.__name__)
 
     def _maybe_compute_loss(self, stage, output, target_mbs, mb_index):
         if stage.is_last and self._has_backward:
@@ -519,7 +520,7 @@ def _batch_p2p(p2p_ops: List[dist.P2POp], desc: Optional[str] = None):
     if len(p2p_ops) == 0:
         return None
     desc_str = f"{desc}, " if desc else ""
-    logger.debug(f"batch_p2p {desc_str}{p2p_ops}")  # noqa: G004
+    logger.debug("batch_p2p %s%s", desc_str, p2p_ops)
     return dist.batch_isend_irecv(p2p_ops).pop()
 
 
@@ -660,9 +661,7 @@ class _ScheduleForwardOnly(PipelineScheduleSingle):
                 works = _sorted_batch_p2p(ops, desc="fwd_send")
                 fwd_sends_to_wait.extend(works.values())
 
-            logger.debug(
-                f"[{self._stage.stage_index}] Forwarded microbatch {i}"  # noqa: G004
-            )
+            logger.debug("[%s] Forwarded microbatch %s", self._stage.stage_index, i)
 
         # Wait for all forward sends to finish
         # This should not have performance impact because by the time the first
@@ -710,9 +709,7 @@ class ScheduleGPipe(PipelineScheduleSingle):
                 works = _sorted_batch_p2p(ops, desc="fwd_send")
                 fwd_sends_to_wait.extend(works.values())
 
-            logger.debug(
-                f"[{self._stage.stage_index}] Forwarded microbatch {i}"  # noqa: G004
-            )
+            logger.debug("[%s] Forwarded microbatch %s", self._stage.stage_index, i)
 
             self._maybe_compute_loss(self._stage, output, target_mbs, i)
 
@@ -743,9 +740,7 @@ class ScheduleGPipe(PipelineScheduleSingle):
                 works = _sorted_batch_p2p(ops, desc="bwd_send")
                 bwd_sends_to_wait.extend(works.values())
 
-            logger.debug(
-                f"[{self._stage.stage_index}] Backwarded microbatch {i}"  # noqa: G004
-            )
+            logger.debug("[%s] Backwarded microbatch %s", self._stage.stage_index, i)
 
         # Return losses if there is a container passed in
         self._update_losses(self._stage, losses)
@@ -2109,9 +2104,40 @@ class ScheduleFlexibleInterleaved1F1B(PipelineScheduleMulti):
 
         if total_bubbles_added > 0:
             logger.warning(
-                f"Non zero bubbles added: {total_bubbles_added=} {bubbles_added=}"  # noqa: G004
+                "Non zero bubbles added: total_bubbles_added=%s bubbles_added=%s",
+                total_bubbles_added,
+                bubbles_added,
             )
         return result
+
+
+class ScheduleInterleavedZeroBubble(ScheduleFlexibleInterleaved1F1B):
+    """
+    The Interleaved Zero Bubble schedule.
+    See https://arxiv.org/pdf/2401.10241 for details.
+    Will perform one forward and one backward on inputs for the microbatches in steady
+    state and supports multiple stages per rank. Uses the backward for weights to fill in
+    the pipeline bubble.
+    """
+
+    def __init__(
+        self,
+        stages: List[_PipelineStageBase],
+        n_microbatches: int,
+        loss_fn: Optional[Callable] = None,
+        args_chunk_spec: Optional[Tuple[TensorChunkSpec, ...]] = None,
+        kwargs_chunk_spec: Optional[Dict[str, TensorChunkSpec]] = None,
+        output_merge_spec: Optional[Union[Dict[str, Any], Tuple[Any]]] = None,
+    ):
+        super().__init__(
+            stages=stages,
+            n_microbatches=n_microbatches,
+            loss_fn=loss_fn,
+            args_chunk_spec=args_chunk_spec,
+            kwargs_chunk_spec=kwargs_chunk_spec,
+            output_merge_spec=output_merge_spec,
+            enable_zero_bubble=True,
+        )
 
 
 def get_schedule_class(schedule_name: str):
@@ -2127,6 +2153,7 @@ def get_schedule_class(schedule_name: str):
         "GPipe": ScheduleGPipe,
         "FlexibleInterleaved1F1B": ScheduleFlexibleInterleaved1F1B,
         "LoopedBFS": ScheduleLoopedBFS,
+        "InterleavedZeroBubble": ScheduleInterleavedZeroBubble,
         "PipelineScheduleSingle": PipelineScheduleSingle,
         "PipelineScheduleMulti": PipelineScheduleMulti,
     }
