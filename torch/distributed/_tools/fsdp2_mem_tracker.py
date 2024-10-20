@@ -21,6 +21,7 @@ from torch.utils._python_dispatch import TorchDispatchMode
 from torch.utils._pytree import tree_map_only
 from torch.utils.weak import WeakIdKeyDictionary, weakref
 
+
 _TOTAL_KEY = "Total"
 
 __all__ = ["FSDPMemTracker"]
@@ -471,9 +472,9 @@ class FSDPMemTracker(MemTracker):
         def all_gather_into_tensor(
             output_tensor: torch.Tensor,
             input_tensor: torch.Tensor,
-            group: ProcessGroup | None = None,
+            group: Union[ProcessGroup, None] = None,
             async_op: bool = False,
-        ) -> Work | _IllegalWork | None:
+        ) -> Union[Work, _IllegalWork, None]:
             self._update_and_maybe_create_winfos(
                 output_tensor,
                 _FSDPRefType.ALL_GATHER,
@@ -494,9 +495,9 @@ class FSDPMemTracker(MemTracker):
             output: torch.Tensor,
             input: torch.Tensor,
             op: ReduceOp.RedOpType = dist.ReduceOp.SUM,
-            group: ProcessGroup | None = None,
+            group: Union[ProcessGroup, None] = None,
             async_op: bool = False,
-        ) -> Work | _IllegalWork | None:
+        ) -> Union[Work, _IllegalWork, None]:
             self._update_and_maybe_create_winfos(
                 input,
                 _FSDPRefType.REDUCE_SCATTER,
@@ -516,9 +517,9 @@ class FSDPMemTracker(MemTracker):
         def all_reduce(
             tensor: torch.Tensor,
             op: ReduceOp.RedOpType = dist.ReduceOp.SUM,
-            group: ProcessGroup | None = None,
+            group: Union[ProcessGroup, None] = None,
             async_op: bool = False,
-        ) -> Work | _IllegalWork | None:
+        ) -> Union[Work, _IllegalWork, None]:
             if self._in_fake_mode:
                 if async_op:
                     return FakeWork()
@@ -528,10 +529,10 @@ class FSDPMemTracker(MemTracker):
 
         @wraps(dist.barrier)
         def barrier(
-            group: ProcessGroup | None = dist.GroupMember.WORLD,
+            group: Union[ProcessGroup, None] = dist.GroupMember.WORLD,
             async_op: bool = False,
-            device_ids: List[int] | None = None,
-        ) -> Work | None:
+            device_ids: Union[List[int], None] = None,
+        ) -> Union[Work, None]:
             if self._in_fake_mode:
                 return None
             else:
@@ -569,7 +570,6 @@ class FSDPMemTracker(MemTracker):
         self, *external: Union[nn.Module, optim.Optimizer, torch.Tensor]
     ) -> None:
         """This is no-op for ``FSDPMemTracker``"""
-        pass
 
     def __enter__(self) -> "FSDPMemTracker":
         self._in_fake_mode = True if active_fake_mode() else False
