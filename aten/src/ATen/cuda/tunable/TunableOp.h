@@ -54,9 +54,15 @@ class TunableOp {
         auto params_sig = params->Signature();
         result = mgr.Lookup(op_sig, params_sig);
         // If there is not previous tuning result been found, we do the tuning iff tuning is enabled
-        if (result == ResultEntry::Null() && ctx->IsTuningEnabled()) {
-          result = FindFastest(params);
-          mgr.Add(op_sig, params_sig, result);
+        if (result == ResultEntry::Null()) {
+          if (ctx->IsTuningEnabled()) {
+            result = FindFastest(params);
+            mgr.Add(op_sig, params_sig, result);
+          }
+          else if (ctx->IsRecordUntunedEnabled()) {
+            // or record the gemm into file
+            mgr.RecordUntuned(ctx->GetUntunedFile(), op_sig, params_sig);
+          }
         }
       }
       else {
@@ -124,8 +130,11 @@ class TunableOp {
       std::string id_name = "Default";
       ParamsT* reference_params = nullptr;
 
+      // numeric check option is controlled by non-static env var, so check it once per tuned operator
+      bool do_numerics_check = ctx->IsNumericsCheckEnabled();
+
       // calcaulte a reference answer for numerical check
-      if (ctx->IsNumericsCheckEnabled()) {
+      if (do_numerics_check) {
         reference_params = params->DeepCopy(false);
         TORCH_CHECK(ops_[ResultEntry::Default()]->Call(reference_params) == OK);
       }
@@ -156,10 +165,11 @@ class TunableOp {
       for (size_t i = 0; i < op_names_.size(); i++) {
         auto* candidate = ops_[op_names_[i]].get(); // borrow pointer
 
-        if (ctx->IsNumericsCheckEnabled()) {
+        if (do_numerics_check) {
           ParamsT* numerical_params = params->DeepCopy(false);
           auto status = candidate->Call(numerical_params);
           if (status != OK) {
+            numerical_params->Delete();
             TUNABLE_LOG3("├──unsupported id=", i, ", ", op_sig, '(', params_sig, ") ", op_names_[i]);
             continue;
           }
@@ -274,7 +284,7 @@ class TunableOp {
 };
 
 struct OpParams {
-  OpParams() {}
+  OpParams() = default;
   virtual ~OpParams() = default;
   virtual std::string Signature() const = 0;
 };

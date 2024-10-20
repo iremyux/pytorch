@@ -6,15 +6,13 @@
 #include <cstddef>
 #include <vector>
 
-namespace torch {
-namespace data {
-namespace samplers {
+namespace torch::data::samplers {
 RandomSampler::RandomSampler(int64_t size, Dtype index_dtype)
     : indices_(torch::randperm(size, index_dtype)) {}
 
 RandomSampler::~RandomSampler() = default;
 
-void RandomSampler::reset(optional<size_t> new_size) {
+void RandomSampler::reset(std::optional<size_t> new_size) {
   // This allocates a new chunk of memory every time (just FYI). It should be
   // amortized over the entire epoch hopefully.
   const auto size = new_size.value_or(static_cast<size_t>(indices_.numel()));
@@ -70,6 +68,4 @@ size_t RandomSampler::index() const noexcept {
   return index_;
 }
 
-} // namespace samplers
-} // namespace data
-} // namespace torch
+} // namespace torch::data::samplers
