@@ -103,6 +103,14 @@ jobs:
         with:
           path: "pytorch"
           submodules: recursive
+      - name: Bootstrap Build Tools
+        shell: cmd
+        run: |
+          "pytorch/.ci/pytorch/windows/arm64/bootstrap_buildtools.bat"
+      - name: Bootstrap Python
+        shell: cmd
+        run: |
+          "pytorch/.ci/pytorch/windows/arm64/bootstrap_python.bat"
       - name: Bootstrap APL
         shell: cmd
         run: |
@@ -159,6 +167,14 @@ jobs:
         with:
           path: "pytorch"
           submodules: recursive
+      - name: Bootstrap Build Tools
+        shell: cmd
+        run: |
+          "pytorch/.ci/pytorch/windows/arm64/bootstrap_buildtools.bat"
+      - name: Bootstrap Python
+        shell: cmd
+        run: |
+          "pytorch/.ci/pytorch/windows/arm64/bootstrap_python.bat"
       - name: Bootstrap Rust
         shell: cmd
         run: |
